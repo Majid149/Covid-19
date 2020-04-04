@@ -258,6 +258,14 @@ $(document).ready(function () {
             tab_recov.push(dat["dat"][pays][i].recovered);
             tab_date.push(dat["dat"][pays][i].date);
         }
+        
+        if(tab_date[tab_date.length-1]!=dat["dat"][pays][(dat["dat"][0].length)-1].date){
+
+            tab_deaths.push(dat["dat"][pays][(dat["dat"][pays].length)-1].deaths);
+            tab_conf.push(dat["dat"][pays][(dat["dat"][pays].length)-1].confirmed);
+            tab_recov.push(dat["dat"][pays][(dat["dat"][pays].length)-1].recovered);
+            tab_date.push(dat["dat"][pays][(dat["dat"][pays].length)-1].date);
+        }
  
 
         return [tab_date,tab_conf,tab_recov,tab_deaths];
@@ -298,6 +306,21 @@ $(document).ready(function () {
             
             
           
+        }
+        if(tab_date[tab_date.length-1]!=dat["dat"][0][(dat["dat"][0].length)-1].date){
+
+            var l1=l2=l3=0;
+            for(j=0;j<dat["dat"].length;j++){
+                
+                l1+=dat["dat"][j][(dat["dat"][0].length)-1].confirmed;
+                l2+=dat["dat"][j][(dat["dat"][0].length)-1].recovered;
+                l3+=dat["dat"][j][(dat["dat"][0].length)-1].deaths;
+               
+            }
+            tab_conf.push(l1);
+            tab_recov.push(l2);
+            tab_deaths.push(l3);
+            tab_date.push(dat["dat"][0][(dat["dat"][0].length)-1].date);
         }
 
         
