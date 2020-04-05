@@ -1,5 +1,10 @@
+
+
 $(document).ready(function () {
     $.getJSON('https://pomber.github.io/covid19/timeseries.json', function (data) {
+
+
+
         var countries = [];
         var a = [];
         $.each(data, function (key, val) {
@@ -7,27 +12,35 @@ $(document).ready(function () {
             a.push(val);
 
         });
-      //  console.log(countries[0]);
-        console.log(a);
+     
         var d = {
             pays: countries,
             dat: a
         };
-        console.log(d["dat"].length);
-        var x=char2(d);
-        console.log(x[1]);
-        graph2(x[0],x[1],x[2],x[3],"chart2");
-        console.log(tot_confpctr(d));
-        tot_conf(d);
-        console.log(tot_deathpctr(d));
-        ///
+
+
         var mor=char3(d);
         graph3(mor);
         ///WORLD MAP
         geo(mor);
 
-        //////
-        console.log(mor[7][0].toString());
+
+        /////////////////////
+        
+
+
+        ////////////////////
+
+        var x=char2(d);
+      
+        graph2(x[0],x[1],x[2],x[3],"chart2");
+      
+        tot_conf(d);
+
+        ///
+   
+
+       
         /////MORIS_CHART
         var us_rate=parseFloat((((mor[0][0])*100)/tot_conf(d)).toFixed(1));
         var ch_rate=parseFloat((((mor[1][0])*100)/tot_conf(d)).toFixed(1));
@@ -38,9 +51,9 @@ $(document).ready(function () {
         var irn_rate=parseFloat((((mor[12][0])*100)/tot_conf(d)).toFixed(1));
         var fr_rate=parseFloat((((mor[5][0])*100)/tot_conf(d)).toFixed(1));
         var other=parseFloat((100-(us_rate+ch_rate+sp_rate+ita_rate+mar_rate+ger_rate+irn_rate+fr_rate)).toFixed(1));
-       console.log(us_rate)
+     
         var tab_rate=[us_rate,ch_rate,sp_rate,ita_rate,mar_rate,ger_rate,irn_rate,fr_rate,other];
-        console.log(tab_rate);
+    
         graph4(tab_rate);
 
 
@@ -51,8 +64,8 @@ $(document).ready(function () {
             recov: tot_recpctr(d)
 
         }
-        console.log(d["dat"][0]);
-       
+      
+
      
 
 
@@ -126,7 +139,7 @@ $(document).ready(function () {
                 contenu.html(ligne);
                 $('#pcountry').html(table["countr"][event.target.value]);
                 e=char1(d,event.target.value);
-                console.log(e[1]);
+              
                 graph1(e[0],e[1],e[2],e[3],"chart1");
 
 
@@ -135,6 +148,8 @@ $(document).ready(function () {
         });
 
         /////
+        
+   
 
 
     })
